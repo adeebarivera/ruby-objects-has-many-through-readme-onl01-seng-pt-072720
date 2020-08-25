@@ -84,6 +84,15 @@ class Waiter
     def self.least_experienced_waiter_avg_tips
         (least_experienced_waiter.meals.collect { |meal| meal.tip }.reduce(:+) / least_experienced_waiter.meals.size.to_f).round(2)
     end
+    
+     
+def best_tipper
+  best_tipped_meal = meals.max do |meal_a, meal_b|
+    meal_a.tip <=> meal_b.tip
+  end
+ 
+  best_tipped_meal.customer
+end
 
     def self.display
         print "Waiters' average years of experience: "
